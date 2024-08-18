@@ -125,29 +125,71 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            ListView(
+            SizedBox(height: 30),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        ImagePath.headphone,
-                        height: 60,
-                        width: 60,
-                        fit: BoxFit.cover,
-                      ),
-                      Text(
-                        "Headphone",
-                        style: AppWidget.semiBoldTextFieldStyle,
-                      ),
-                      Text(
-                        "\$100",
-                        style: TextStyle(color: Color(0xFFfd6f3e)),
-                      )
-                    ],
+                Text(
+                  "All Products",
+                  style: AppWidget.semiBoldTextFieldStyle,
+                ),
+                Text(
+                  "see all",
+                  style: TextStyle(
+                    color: Color(0xFFfd6f3e),
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
                 )
               ],
+            ),
+            SizedBox(height: 30),
+            Container(
+              height: 220,
+              child: ListView(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                children: [
+                  Container(
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          ImagePath.headphone,
+                          height: 120,
+                          width: 120,
+                          fit: BoxFit.cover,
+                        ),
+                        Text(
+                          "Headphone",
+                          style: AppWidget.semiBoldTextFieldStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              "\$100",
+                              style: TextStyle(
+                                  color: Color(0xFFfd6f3e),
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                  color: Color(0xFFfd6f3e),
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
         ),
