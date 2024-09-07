@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -13,15 +12,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.only(top: 50),
+        margin: const EdgeInsets.only(top: 50),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset("images/headphone.PNG"),
-            Padding(
+            Image.asset('images/headphone.PNG'),
+            const Padding(
               padding: EdgeInsets.only(left: 20),
               child: Text(
-                "Explore\nThe Best\nProducts",
+                'Explore\nThe Best\nProducts',
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 40.0,
@@ -31,14 +30,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
             Align(
               alignment: Alignment.centerRight,
               child: Container(
-                padding: EdgeInsets.all(25),
-                margin: EdgeInsets.only(right: 20),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.all(25),
+                margin: const EdgeInsets.only(right: 20),
+                decoration: const BoxDecoration(
                   color: Colors.black,
                   shape: BoxShape.circle,
                 ),
-                child: Text(
-                  "Next",
+                child: const Text(
+                  'Next',
                   style: TextStyle(
                     color: Colors.white,
                   ),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/utils/image_path/image_path.dart';
 import 'package:shopping_app/widget/support_widget.dart';
@@ -21,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.only(left: 20, top: 50, right: 20),
+        margin: const EdgeInsets.only(left: 20, top: 50, right: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -32,11 +31,11 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Hey, Shivam",
+                      'Hey, Shivam',
                       style: AppWidget.boldTextFieldStyle,
                     ),
                     Text(
-                      "Good Morning",
+                      'Good Morning',
                       style: AppWidget.lightTextFieldStyle,
                     ),
                   ],
@@ -48,15 +47,15 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Container(
               width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.only(left: 20),
+              padding: const EdgeInsets.only(left: 20),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -64,26 +63,26 @@ class _HomePageState extends State<HomePage> {
               child: TextField(
                 decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: "Search Products",
+                    hintText: 'Search Products',
                     hintStyle: AppWidget.lightTextFieldStyle,
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.search,
                       color: Colors.black,
                     )),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Categories",
+                  'Categories',
                   style: AppWidget.semiBoldTextFieldStyle,
                 ),
-                Text(
-                  "see all",
+                const Text(
+                  'see all',
                   style: TextStyle(
                     color: Color(0xFFfd6f3e),
                     fontSize: 18,
@@ -92,20 +91,20 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               children: [
                 Container(
                   height: 130,
-                  padding: EdgeInsets.all(20),
-                  margin: EdgeInsets.only(right: 20),
+                  padding: const EdgeInsets.all(20),
+                  margin: const EdgeInsets.only(right: 20),
                   decoration: BoxDecoration(
-                    color: Color(0xFFFD6F3E),
+                    color: const Color(0xFFFD6F3E),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
-                      "All",
+                      'All',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -115,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Expanded(
-                  child: Container(
+                  child: SizedBox(
                     height: 130,
                     child: ListView.builder(
                       itemCount: categories.length,
@@ -128,16 +127,16 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "All Products",
+                  'All Products',
                   style: AppWidget.semiBoldTextFieldStyle,
                 ),
-                Text(
-                  "see all",
+                const Text(
+                  'see all',
                   style: TextStyle(
                     color: Color(0xFFfd6f3e),
                     fontSize: 18,
@@ -146,42 +145,48 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             ),
-            SizedBox(height: 30),
-            Container(
-              height: 220,
+            const SizedBox(height: 30),
+            SizedBox(
+              height: 240,
               child: ListView(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 children: [
                   Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10)),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Image.asset(
-                          ImagePath.headphone,
-                          height: 120,
-                          width: 120,
+                          ImagePath.headphone_2,
+                          height: 150,
+                          width: 150,
                           fit: BoxFit.cover,
+
                         ),
                         Text(
-                          "Headphone",
+                          'Headphone',
                           style: AppWidget.semiBoldTextFieldStyle,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisSize: MainAxisSize.max,
                           children: [
-                            Text(
-                              "\$100",
+                            const Text(
+                              '\$100',
                               style: TextStyle(
                                   color: Color(0xFFfd6f3e),
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold),
                             ),
+                            const SizedBox(width: 50),
                             Container(
-                              padding: EdgeInsets.all(5),
+                              padding: const EdgeInsets.all(5),
                               decoration: BoxDecoration(
-                                  color: Color(0xFFfd6f3e),
+                                  color: const Color(0xFFfd6f3e),
                                   borderRadius: BorderRadius.circular(8)),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.add,
                                 color: Colors.white,
                               ),
@@ -190,7 +195,98 @@ class _HomePageState extends State<HomePage> {
                         )
                       ],
                     ),
-                  )
+                  ),
+                  SizedBox(width: 20,),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          ImagePath.watch2,
+                          height: 150,
+                          width: 150,
+                          fit: BoxFit.cover,
+
+                        ),
+                        Text(
+                          'Apple Watch',
+                          style: AppWidget.semiBoldTextFieldStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            const Text(
+                              '\$300',
+                              style: TextStyle(
+                                  color: Color(0xFFfd6f3e),
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(width: 50),
+                            Container(
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFFfd6f3e),
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: const Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 20,),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          ImagePath.laptop_2,
+                          height: 150,
+                          width: 150,
+                          fit: BoxFit.cover,
+
+                        ),
+                        Text(
+                          'Laptop',
+                          style: AppWidget.semiBoldTextFieldStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            const Text(
+                              '\$1000',
+                              style: TextStyle(
+                                  color: Color(0xFFfd6f3e),
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(width: 50),
+                            Container(
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFFfd6f3e),
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: const Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+
                 ],
               ),
             ),
@@ -208,8 +304,8 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
-      margin: EdgeInsets.only(right: 20),
+      padding: const EdgeInsets.all(20),
+      margin: const EdgeInsets.only(right: 20),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -222,8 +318,8 @@ class CategoryTile extends StatelessWidget {
             width: 50,
             fit: BoxFit.cover,
           ),
-          SizedBox(height: 10),
-          Icon(Icons.arrow_forward),
+          const SizedBox(height: 10),
+          const Icon(Icons.arrow_forward),
         ],
       ),
     );
