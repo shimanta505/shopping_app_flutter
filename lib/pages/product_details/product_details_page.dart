@@ -22,7 +22,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           mainAxisSize: MainAxisSize.max,
           children: [
             //image
-            Container(
+            SizedBox(
               height: 400.adaptSize,
               width: double.maxFinite,
               // color: Colors.blue,
@@ -38,7 +38,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           border: Border.all(),
                           borderRadius: BorderRadius.circular(30.v),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.arrow_back_ios_new,
                           color: Colors.black,
                         ),
@@ -83,13 +83,13 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Text(
-                "Headphone",
+                'Headphone',
                 style: AppWidget.boldTextFieldStyle,
               ),
               Text(
-                "\$300",
+                '\$300',
                 style: AppWidget.boldTextFieldStyle
-                    .copyWith(color: Color(0xFFfd6f3e)),
+                    .copyWith(color: const Color(0xFFfd6f3e)),
               ),
             ],
           ),
@@ -97,14 +97,14 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             height: 30.v,
           ),
           Text(
-            "Details",
+            'Details',
             style: AppWidget.boldTextFieldStyle,
           ),
           SizedBox(
             height: 20.v,
           ),
           Text(
-            "this is random details dlfkld kdmggdkgm fgmfkgmk,f fmgkfmgfkgmfmgkf fkgmfkgmfcb f gfmgfkmbf,gmgmfg,mfg fgmfkg f fkbfkmf bfg fmfkbmfgmkfmfb f fkbmfkmf fbmfkmf fkbmfkhmfkb fkb fb fmfkbmfkbmfb fkbmbfkbmfb fbfkfbppgvmfkmf fbmfkbfbmbfbfmk ",
+            'this is random details dlfkld kdmggdkgm fgmfkgmk,f fmgkfmgfkgmfmgkf fkgmfkgmfcb f gfmgfkmbf,gmgmfg,mfg fgmfkg f fkbfkmf bfg fmfkbmfgmkfmfb f fkbmfkmf fbmfkmf fkbmfkhmfkb fkb fb fmfkbmfkbmfb fkbmbfkbmfb fbfkfbppgvmfkmf fbmfkbfbmbfbfmk ',
             style: AppWidget.lightTextFieldStyle,
           ),
           SizedBox(
@@ -115,12 +115,12 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             width: double.maxFinite,
             margin: EdgeInsets.only(left: 30.h, right: 30.h),
             decoration: BoxDecoration(
-              color: Color(0xFFfd6f3e),
+              color: const Color(0xFFfd6f3e),
               borderRadius: BorderRadius.circular(10.v),
             ),
             child: Center(
               child: Text(
-                "Buy Now",
+                'Buy Now',
                 style: AppWidget.semiBoldTextFieldStyle
                     .copyWith(color: Colors.white),
               ),

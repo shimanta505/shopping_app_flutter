@@ -1,20 +1,18 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_app/pages/authentication/sign_up/sign_up_page.dart';
-import 'package:shopping_app/utils/image_path/image_path.dart';
 import 'package:shopping_app/utils/size_utils.dart';
-import 'package:shopping_app/widget/support_widget.dart';
 
-import '../../navigation/bottom_navigation.dart';
+import '../utils/image_path/image_path.dart';
+import '../widget/support_widget.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({super.key});
+class AdminSignin extends StatefulWidget {
+  const AdminSignin({super.key});
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<AdminSignin> createState() => _AdminSigninState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _AdminSigninState extends State<AdminSignin> {
   late TextEditingController emailController;
   late TextEditingController passwordController;
 
@@ -28,53 +26,40 @@ class _SignInPageState extends State<SignInPage> {
     super.initState();
   }
 
-  userLogin() async {
-    if (!_formKey.currentState!.validate()) {
-      return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: Colors.red,
-          content: Text(
-            'missing property',
-            style: TextStyle(
-              fontSize: 20.fSize,
-            ),
-          )));
-    }
-    try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-              email: emailController.text, password: passwordController.text);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: Colors.redAccent,
-          content: Text(
-            'Sign in Successfully',
-            style: TextStyle(
-              fontSize: 20.fSize,
-            ),
-          )));
-      print(userCredential);
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const BottomNavigation()));
-    } on FirebaseException catch (e) {
-      if (e.code == 'user-not-found') {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            backgroundColor: Colors.redAccent,
-            content: Text(
-              'No User Found For That Email',
-              style: TextStyle(
-                fontSize: 20.fSize,
-              ),
-            )));
-      } else if (e.code == 'wrong-password') {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            backgroundColor: Colors.redAccent,
-            content: Text(
-              'Wrong Password Provided By User',
-              style: TextStyle(
-                fontSize: 20.fSize,
-              ),
-            )));
-      }
-    }
+  loginAdmin() async {
+    FirebaseFirestore.instance.collection("Admin").get().then((snapshot) {
+      snapshot.docs.forEach((result) {
+        if (result.data()['username'] != emailController.text.trim()) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Colors.redAccent,
+              content: Text(
+                'username isn\'t correct',
+                style: TextStyle(
+                  fontSize: 20.fSize,
+                ),
+              )));
+        } else if (result.data()['password'] !=
+            passwordController.text.trim()) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Colors.redAccent,
+              content: Text(
+                'password isn\'t correct',
+                style: TextStyle(
+                  fontSize: 20.fSize,
+                ),
+              )));
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Colors.redAccent,
+              content: Text(
+                'Login successfully',
+                style: TextStyle(
+                  fontSize: 20.fSize,
+                ),
+              )));
+        }
+      });
+    });
   }
 
   @override
@@ -99,21 +84,18 @@ class _SignInPageState extends State<SignInPage> {
                   children: [
                     Center(
                       child: Text(
-                        'Sign In',
+                        'Admin Panel',
                         style: AppWidget.semiBoldTextFieldStyle,
                       ),
                     ),
                     SizedBox(
                       height: 20.v,
                     ),
-                    Text(
-                      'Please Enter the details below ',
-                      style: AppWidget.lightTextFieldStyle,
-                    ),
+
                     SizedBox(
                       height: 20.v,
                     ),
-                    _emailSection(),
+                    _userNameSection(),
                     SizedBox(
                       height: 20.v,
                     ),
@@ -123,33 +105,34 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     _forgotPasswordSection(),
                     SizedBox(
-                      height: 60.v,
+                      height: 20.v,
                     ),
                     _loginButton(),
                     SizedBox(
                       height: 20.v,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Don't have  an account?",
-                          style: AppWidget.lightTextFieldStyle,
-                        ),
-                        SizedBox(
-                          width: 20.h,
-                        ),
-                        InkWell(
-                          onTap: () => Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const SignUpPage())),
-                          child: Text('Sign Up',
-                              style: AppWidget.lightTextFieldStyle
-                                  .copyWith(color: Colors.green)),
-                        )
-                      ],
-                    )
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Text(
+                    //       "Don't have  an account?",
+                    //       style: AppWidget.lightTextFieldStyle,
+                    //     ),
+                    //     SizedBox(
+                    //       width: 20.h,
+                    //     ),
+                    //     InkWell(
+                    //       onTap: () => Navigator.pushReplacement(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //               builder: (context) => const SignUpPage())),
+                    //       child: Text('Sign Up',
+                    //           style: AppWidget.lightTextFieldStyle
+                    //               .copyWith(color: Colors.green)),
+                    //     )
+                    //   ],
+                    // )
+                    //
                   ],
                 ),
               ),
@@ -161,7 +144,9 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   Widget _loginButton() => InkWell(
-        onTap: () => userLogin(),
+        onTap: () {
+          loginAdmin();
+        },
         child: Container(
           height: 60.adaptSize,
           width: double.maxFinite,
@@ -180,11 +165,11 @@ class _SignInPageState extends State<SignInPage> {
         ),
       );
 
-  Widget _emailSection() => Column(
+  Widget _userNameSection() => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Email',
+            'Username',
             style: AppWidget.semiBoldTextFieldStyle,
           ),
           SizedBox(
